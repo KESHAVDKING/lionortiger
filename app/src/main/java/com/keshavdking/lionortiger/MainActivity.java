@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.gridlayout.widget.GridLayout;
 
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
 //    int [] corners={0,2,6,8};
     //this line of code will be used to chk for winning cases
-    int [][] winingConditions = {{0,1,2},{3,4,4},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
+    int [][] winingConditions = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
 //
 //    private int [] r1={0,1,2};
 //    private int [] r2={3,4,5};
@@ -48,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        for (int i=0;i<playersChoices.length;i++){
-            playersChoices[i]=Player.NONE;
-        }
+        initVariables();
         //        playersChoices[0]=Player.NONE;
 //        playersChoices[1]=Player.NONE;
 //        playersChoices[2]=Player.NONE;
@@ -254,9 +251,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void resetTheGame() {
 
-        for (int i=0;i<playersChoices.length;i++){
-            playersChoices[i]=Player.NONE;
-        }
+        initVariables();
         //        playersChoices[0]=Player.NONE;
 //        playersChoices[1]=Player.NONE;
 //        playersChoices[2]=Player.NONE;
@@ -276,6 +271,13 @@ public class MainActivity extends AppCompatActivity {
         currentPlayer=Player.ONE;
         gameOver=false;
         btnReset.setVisibility(View.GONE);
+
+    }
+
+    private void initVariables(){
+        for (int i=0;i<playersChoices.length;i++){
+            playersChoices[i]=Player.NONE;
+        }
 
     }
 }
