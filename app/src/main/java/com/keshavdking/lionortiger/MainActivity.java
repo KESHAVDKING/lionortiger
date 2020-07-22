@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnReset;
     GridLayout gridView;
+    private int count=1;
 
 
     boolean gameOver=false;
@@ -48,15 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initVariables();
-        //        playersChoices[0]=Player.NONE;
-//        playersChoices[1]=Player.NONE;
-//        playersChoices[2]=Player.NONE;
-//        playersChoices[3]=Player.NONE;
-//        playersChoices[4]=Player.NONE;
-//        playersChoices[5]=Player.NONE;
-//        playersChoices[6]=Player.NONE;
-//        playersChoices[7]=Player.NONE;
-//        playersChoices[8]=Player.NONE;
+
         btnReset=findViewById(R.id.btnReset);
         gridView=findViewById(R.id.gridLayout);
         btnReset.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     public void imageIsTapped(View tappedImage) {
 
         if (!gameOver) {
+            count++;
             ImageView imageView = (ImageView) tappedImage;
             imageView.setTranslationX(-2000);
             final int tiIndex = Integer.parseInt(imageView.getTag().toString());
@@ -110,157 +104,21 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-//        boolean isTrue = contains(corners,tiIndex);
-//        //chk for winners
-//        //corner case
-//        if(isTrue){
-////            Toast.makeText(this,"corner is clicked",Toast.LENGTH_LONG).show();
-//            hrChk(tiIndex,clickedPlayer);
-//            vrChk(tiIndex,clickedPlayer);
-//            diaChk(tiIndex,clickedPlayer);
-//        }
-//        else if (tiIndex==4){
-//            hrChk(tiIndex,clickedPlayer);
-//            vrChk(tiIndex,clickedPlayer);
-//            diaChk(tiIndex,clickedPlayer);
-//        }else {
-//            hrChk(tiIndex,clickedPlayer);
-//            vrChk(tiIndex,clickedPlayer);
-//        }
+            if(count>=10){
+                Toast.makeText(this,"Game Over Well Played No One wins ",Toast.LENGTH_SHORT).show();
+                btnReset.setVisibility(View.VISIBLE);
+                gameOver=true;
+            }
 
 
         }
-/* this was my first case
-    //horizontal row chk
-    private void hrChk(int i,Player p){
 
-        if(contains(r1,i)){
-            for (final int x : r1) {
-
-                if(playersChoices[r1[x]]!=p){
-                    return;
-                }
-
-            }
-            youwon();
-
-        }
-        else if (contains(r2,i)){
-            for (final int x : r1) {
-
-                if(playersChoices[r2[x]]!=p){
-                    return;
-                }
-
-            }
-            youwon();
-        }else if (contains(r3,i)){
-            for (final int x : r1) {
-
-                if(playersChoices[r3[x]]!=p){
-                    return;
-                }
-//                youwon();
-            }
-            youwon();
-        }
-
-
-    }
-
-    //vertical row chk
-    private void vrChk(int i,Player p){
-
-
-        if(contains(c1,i)){
-            for ( int x=0;x<3;x++) {
-
-                if(playersChoices[c1[x]] != p){
-                    return;
-                }
-
-            }
-            youwon();
-        }
-        else if (contains(c2,i)){
-            for ( int x=0;x<3;x++) {
-
-                if(playersChoices[c2[x]]!=p){
-                    return;
-                }
-
-            }
-            youwon();
-        }else if (contains(c3,i)){
-            for ( int x=0;x<3;x++) {
-
-                if(playersChoices[c3[x]]!=p){
-                    return;
-                }
-
-            }
-            youwon();
-        }
-
-
-    }
-
-    //diagonal chk
-
-    private void diaChk(int i,Player p){
-
-
-        if(contains(d1,i)){
-            for ( int x=0;x<3;x++) {
-
-                if(playersChoices[d1[x]]!=p){
-                    return;
-                }
-
-            }
-            youwon();
-        }
-        else if (contains(d2,i)){
-            for ( int x=0;x<3;x++) {
-
-                if(playersChoices[d2[x]]!=p){
-                    return;
-                }
-
-            }
-            youwon();
-        }
-    }
-
-
-
-    public boolean contains(final int[] array, final int key) {
-        for (final int i : array) {
-            if (i == key) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void youwon(){
-        Toast.makeText(this,"you won",Toast.LENGTH_LONG).show();
-    }
-*/
     }
 
     private void resetTheGame() {
 
+        count=1;
         initVariables();
-        //        playersChoices[0]=Player.NONE;
-//        playersChoices[1]=Player.NONE;
-//        playersChoices[2]=Player.NONE;
-//        playersChoices[3]=Player.NONE;
-//        playersChoices[4]=Player.NONE;
-//        playersChoices[5]=Player.NONE;
-//        playersChoices[6]=Player.NONE;
-//        playersChoices[7]=Player.NONE;
-//        playersChoices[8]=Player.NONE;
 
         for (int i=0;i<gridView.getChildCount();i++){
             ImageView imageView = (ImageView) gridView.getChildAt(i);
